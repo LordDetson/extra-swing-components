@@ -40,6 +40,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 
@@ -50,6 +51,7 @@ import by.babanin.ext.message.TranslateCode;
 import by.babanin.ext.message.Translator;
 import by.babanin.ext.preference.PreferenceAware;
 import by.babanin.ext.preference.PreferencesSupport;
+import by.babanin.ext.representation.ReportField;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -319,5 +321,12 @@ public final class GUIUtils {
                 point1.x - point2.x,
                 point1.y - point2.y
         );
+    }
+
+    public static TableColumn createTableColumn(ReportField field, int modelIndex) {
+        TableColumn column = new TableColumn(modelIndex);
+        column.setIdentifier(field.getName());
+        column.setHeaderValue(Translator.getFieldCaption(field));
+        return column;
     }
 }

@@ -104,9 +104,6 @@ public class TableColumnAdjuster implements PropertyChangeListener, TableModelLi
         if(!tableColumn.getResizable()) {
             return;
         }
-        if(columnIdsToFit.contains(tableColumn.getIdentifier().toString())) {
-            return;
-        }
 
         int columnHeaderWidth = getColumnHeaderWidth(column) + spacing;
         int columnDataWidth = getColumnContentWidth(column) + spacing;
@@ -231,7 +228,7 @@ public class TableColumnAdjuster implements PropertyChangeListener, TableModelLi
         for(String id : columnIdsToFit) {
             int columnIndex = columnModel.getColumnIndex(id);
             TableColumn column = columnModel.getColumn(columnIndex);
-            int columnWidthToFit = getColumnWidthToFit(column);
+            int columnWidthToFit = Math.max(column.getWidth(), getColumnWidthToFit(column));
             updateTableColumn(columnIndex, columnWidthToFit, storeColumnSize);
         }
     }

@@ -46,7 +46,6 @@ public final class ExceptionDialog extends JDialog {
 
     private static final String TO_SHOW_DETAILS_SUFFIX = " >>";
     private static final String TO_CLOSE_DETAILS_SUFFIX = " <<";
-    private static final int DEFAULT_WIDTH = 450;
     private static final int EXPANDED_HEIGHT = 250;
     private static final int DEFAULT_EMPTY_SPACE_SIZE = 10;
     private static final Pattern LINE_REGEX = Pattern.compile("\\r?\\n", Pattern.MULTILINE);
@@ -105,8 +104,8 @@ public final class ExceptionDialog extends JDialog {
         messagePanel = new JPanel(new BorderLayout());
         messagePanel.add(imagePanel, BorderLayout.WEST);
         messagePanel.add(textArea, BorderLayout.CENTER);
-        messagePanel.setPreferredSize(new Dimension(
-                Math.max(messagePanel.getPreferredSize().width, DEFAULT_WIDTH), messagePanel.getPreferredSize().height));
+        int preferredWidth = Math.max(messagePanel.getPreferredSize().width, GUIUtils.getHalfFrameSize().width);
+        messagePanel.setPreferredSize(new Dimension(preferredWidth, messagePanel.getPreferredSize().height));
     }
 
     private void initializeButtonsPanel() {
@@ -179,7 +178,8 @@ public final class ExceptionDialog extends JDialog {
         detailsPanel.setVisible(showDetails);
         updateShowDetailsButtonText();
         if(showDetails) {
-            setSize(Math.max(getWidth(), DEFAULT_WIDTH), getHeight() + EXPANDED_HEIGHT);
+            int preferredWidth = Math.max(getWidth(), GUIUtils.getHalfFrameSize().width);
+            setSize(preferredWidth, getHeight() + EXPANDED_HEIGHT);
             validate();
         }
         else {
