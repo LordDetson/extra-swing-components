@@ -68,6 +68,10 @@ public class TranslateCode {
     public static final String SETTINGS_COLUMNS_TO_FIT = "settings.tableColumnAdjustment.columnsToFit";
     public static final String SETTINGS_VIEW_TITLE = "settings.%s.title";
     public static final String SETTINGS_VIEW_DESCRIPTION = "settings.%s.description";
+    public static final String SETTINGS_STYLE_THEME = "settings.style.theme";
+    public static final String SETTINGS_STYLE_FONT = "settings.style.font";
+    public static final String SETTINGS_STYLE_FONT_SIZE = "settings.style.fontSize";
+    public static final String SETTINGS_STYLE_ACCENT_COLOR = "settings.style.accentColor";
 
     public static final String TODO_STATUS = "todo.status.%s";
     public static final String FIELD_CAPTION = "%s.%s.caption";

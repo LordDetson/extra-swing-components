@@ -11,9 +11,7 @@ import org.apache.commons.collections4.PredicateUtils;
 import org.apache.commons.collections4.map.PredicatedMap;
 import org.apache.commons.lang3.StringUtils;
 
-import by.babanin.ext.component.table.adjustment.TableColumnAdjustment;
 import by.babanin.ext.settings.view.SettingViewType;
-import by.babanin.ext.settings.view.TableColumnAdjustmentView;
 
 public class SettingsViewRegister implements Map<String, SettingViewType>, Iterable<Map.Entry<String, SettingViewType>> {
 
@@ -38,12 +36,6 @@ public class SettingsViewRegister implements Map<String, SettingViewType>, Itera
         Predicate<String> blankCheck = StringUtils::isNotBlank;
         Predicate<Object> nullCheck = PredicateUtils.notNullPredicate();
         this.settingMap = PredicatedMap.predicatedMap(new LinkedHashMap<>(), blankCheck, nullCheck);
-        init();
-    }
-
-    private void init() {
-        settingMap.put(TableColumnAdjustment.ID, new SettingViewType(TableColumnAdjustment.ID,
-                (settings, type) -> new TableColumnAdjustmentView((TableColumnAdjustment) settings.get(TableColumnAdjustment.ID), type)));
     }
 
     @Override

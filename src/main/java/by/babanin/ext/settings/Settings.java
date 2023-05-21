@@ -13,6 +13,7 @@ import org.apache.commons.collections4.map.PredicatedMap;
 import org.apache.commons.lang3.StringUtils;
 
 import by.babanin.ext.component.table.adjustment.TableColumnAdjustment;
+import by.babanin.ext.settings.style.StyleSetting;
 
 public class Settings implements Map<String, Setting>, Iterable<Entry<String, Setting>> {
 
@@ -42,6 +43,7 @@ public class Settings implements Map<String, Setting>, Iterable<Entry<String, Se
 
     private void init() {
         settingMap.put(TableColumnAdjustment.ID, new TableColumnAdjustment());
+        settingMap.put(StyleSetting.ID, new StyleSetting());
     }
 
     @Override
