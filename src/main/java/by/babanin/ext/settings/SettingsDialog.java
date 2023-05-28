@@ -14,6 +14,7 @@ import by.babanin.ext.preference.DimensionPreference;
 import by.babanin.ext.preference.PointPreference;
 import by.babanin.ext.preference.PreferenceAware;
 import by.babanin.ext.preference.PreferencesGroup;
+import by.babanin.ext.preference.until.PreferenceUtils;
 
 public class SettingsDialog extends JDialog implements PreferenceAware<PreferencesGroup> {
 
@@ -52,6 +53,8 @@ public class SettingsDialog extends JDialog implements PreferenceAware<Preferenc
 
     @Override
     public void apply(PreferencesGroup preferencesGroup) {
+        preferencesGroup.getOpt(getContentPane().getKey())
+                .ifPresent(preference -> PreferenceUtils.applyLater(getContentPane(), (PreferencesGroup) preference));
         preferencesGroup.getOpt(SIZE_KEY)
                 .ifPresent(preference -> {
                     Dimension size = ((DimensionPreference) preference).getDimension();
@@ -61,8 +64,6 @@ public class SettingsDialog extends JDialog implements PreferenceAware<Preferenc
         preferencesGroup.getOpt(LOCATION_KEY)
                 .ifPresentOrElse(preference -> setLocation(((PointPreference) preference).getPoint()),
                         () -> setLocationRelativeTo(getOwner()));
-        preferencesGroup.getOpt(getContentPane().getKey())
-                .ifPresent(preference -> getContentPane().apply((PreferencesGroup) preference));
     }
 
     @Override
